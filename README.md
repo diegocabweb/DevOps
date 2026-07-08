@@ -1,31 +1,31 @@
 Iniciando un nuevo proceso de aprendizaje utilizando IA
 
-Alistamiento
+## Alistamiento
 
-Instalar Homebrew
+# Instalar Homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-Instalar Terraform
+# Instalar Terraform
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
 
-Instalar vscode
+# Instalar vscode
 brew install --cask visual-studio-code
 
 Se instala docker desktop
 
-Instalar AWS S3
+# Instalar AWS S3
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 which aws
 aws --version
 
-Instalar floci
+# Instalar floci
 brew install floci-io/floci/floci
 floci start
 eval $(floci env)
-# exports AWS_ENDPOINT_URL, AWS_ACCESS_KEY_ID,
-# AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
+#exports AWS_ENDPOINT_URL, AWS_ACCESS_KEY_ID,
+#AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
 
 # Create a bucket
 aws s3 mb s3://my-bucket
