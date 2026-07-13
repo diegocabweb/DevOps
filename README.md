@@ -1,65 +1,93 @@
 Iniciando un nuevo proceso de aprendizaje utilizando IA
 
-# Alistamiento
+# 1. Alistamiento
 
-## Instalar Homebrew
+Instalar Homebrew
+```bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
 
-## Instalar Terraform
+Instalar Terraform
+```bash
 brew tap hashicorp/tap
 brew install hashicorp/tap/terraform
+```
 
-## Instalar vscode
+Instalar vscode
+```bash
 brew install --cask visual-studio-code
+```
 
-Se instala docker desktop
+Se instala docker desktop en la interfaz gráfica
 
-## Instalar AWS S3
+Instalar AWS S3
+```bash
 curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
 sudo installer -pkg AWSCLIV2.pkg -target /
 which aws
 aws --version
+```
 
-## Instalar floci
+Instalar floci
+```bash
 brew install floci-io/floci/floci
 floci start
 eval $(floci env)
 #exports AWS_ENDPOINT_URL, AWS_ACCESS_KEY_ID,
 #AWS_SECRET_ACCESS_KEY, AWS_DEFAULT_REGION
+```
 
-### Create a bucket
+Create a bucket
+```bash
 aws s3 mb s3://my-bucket
+```
 
-### Write a file and upload it
+Write a file and upload it
+```bash
 echo "Why pay for S3 when floci is free? 🎉" > hello-floci.txt
 aws s3 cp hello-floci.txt \
   s3://my-bucket/hello-floci.txt
+```
 
-### Download it back and read it
+Download it back and read it
+```bash
 aws s3 cp s3://my-bucket/hello-floci.txt \
   hello-back.txt
 cat hello-back.txt
+```
 
-### Check status
+Check status
+```bash
 floci status
+```
 
-### View logs
+View logs
+```bash
 floci logs --follow
+```
 
-### Stop the emulator
+Stop the emulator
+```bash
 floci stop
+```
 
-### Run health diagnostics
+Run health diagnostics
+```bash
 floci doctor
+```
 
-### State survives container restarts
+State survives container restarts
+```bash
 floci start --persist ./data
+```
 
-### Save and restore state
+Save and restore state
+```bash
 floci snapshot save my-snapshot
 floci snapshot restore my-snapshot
+```
 
-## Inciando con Terraform
+# 2. Inciando con Terraform
 Iniciar docker desktop y verificar que docker está activo:
 ```bash
 docker ps
@@ -137,4 +165,31 @@ aws --endpoint-url=http://localhost:4566 s3 ls
 También con:
 ```bash
 aws s3 ls
+```
+## NOTA
+Antes de hacer un commit a Github, para evitar este error se debe hacer lo siguiente:
+```bash
+remote: error: File 01-s3-local/.terraform/providers/registry.terraform.io/hashicorp/aws/5.100.0/darwin_arm64/terraform-provider-aws_v5.100.0_x5 is 648.39 MB; this exceeds GitHub's file size limit of 100.00 MB
+```
+
+En la raiz del proyecto Git se debe crear un archivo .gitignore al menos con el siguiente contenido para que no suba a GitHub
+Ya sean archivos grandes o de resgo
+
+```bash
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Variables sensibles
+*.tfvars
+*.tfvars.json
+
+# Planes de Terraform
+*.tfplan
+
+# Lock file (opcional)
+# .terraform.lock.hcl
+
 ```
