@@ -22,11 +22,14 @@ provider "aws" {
 }
 
 # Definición de tu primer bucket de S3 local
+# ... mantén aquí arriba tu bloque "terraform" y "provider" de ayer ...
+
+# Definición de tu primer bucket de S3 local usando variables
 resource "aws_s3_bucket" "mi_bucket_local" {
-  bucket = "mi-primer-bucket-automatizado"
+  bucket = var.nombre_bucket  # <-- Aquí llamamos a la variable
 
   tags = {
-    Entorno   = "Local"
+    Entorno   = var.entorno   # <-- Aquí llamamos a la otra variable
     CreadoPor = "Terraform"
   }
 }

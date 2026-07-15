@@ -193,3 +193,79 @@ crash.log
 # .terraform.lock.hcl
 
 ```
+
+# 3. Variables y Outputs con Terraform
+Parametrizar la infra y no tener información "quemada en el código" harcoded
+
+## variables.tf
+Parametros de entrada, como nombre del bucket o region
+
+## outputs.tf
+Datos de resultado en pantalla como ARN o nombre de dominio del bucket
+
+## Contenido
+variables.tf
+```bash
+variable "nombre_bucket" {
+  description = "El nombre único que tendrá nuestro bucket de S3 local"
+  type        = string
+  default     = "mi-bucket-parametrizado-con-variables"
+}
+
+variable "entorno" {
+  description = "Ambiente de despliegue (Local, Dev, Prod)"
+  type        = string
+  default     = "Local"
+}
+```
+
+outputs.tf
+```bash
+output "bucket_arn" {
+  description = "El ARN (Amazon Resource Name) del bucket creado"
+  value       = aws_s3_bucket.mi_bucket_local.arn
+}
+
+output "bucket_domain_name" {
+  description = "El nombre de dominio del bucket de S3"
+  value       = aws_s3_bucket.mi_bucket_local.bucket_domain_name
+}
+```
+
+Ahora integrarlo en el archivo main.tf
+```bash
+# ... mantén aquí arriba tu bloque "terraform" y "provider" de ayer ...
+
+# Definición de tu primer bucket de S3 local usando variables
+resource "aws_s3_bucket" "mi_bucket_local" {
+  bucket = var.nombre_bucket  # <-- Aquí llamamos a la variable
+
+  tags = {
+    Entorno   = var.entorno   # <-- Aquí llamamos a la otra variable
+    CreadoPor = "Terraform"
+  }
+}
+```
+
+Ahora aplicamos
+```bash
+terraform plan
+terraform apply
+```
+
+La salida será la siguiente:
+
+```bash
+Apply complete! Resources: 1 added, 0 changed, 1 destroyed.
+
+Outputs:
+
+bucket_arn = "arn:aws:s3:::mi-bucket-parametrizado-con-variables"
+bucket_domain_name = "mi-bucket-parametrizado-con-variables.s3.amazonaws.com"
+```
+
+## Nota adicional flocy
+Para que floci conserve la infra creada, se debe iniciar con la siguiente opcion de persistencia
+```bash
+floci start --persist ./data
+```
