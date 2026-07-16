@@ -31,5 +31,6 @@ resource "aws_s3_bucket" "mi_bucket_local" {
   tags = {
     Entorno   = var.entorno   # <-- Aquí llamamos a la otra variable
     CreadoPor = "Terraform"
+    Proyecto  = "AprendizajeDevOps"  # <-- Agrega esta línea nueva
   }
 }

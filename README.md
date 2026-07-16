@@ -269,3 +269,31 @@ Para que floci conserve la infra creada, se debe iniciar con la siguiente opcion
 ```bash
 floci start --persist ./data
 ```
+
+# 4. Archivo de estado tfstate
+Archivo JSON donde se almacena el mapa de la infraestructura
+En este caso es terraform.tfstate
+
+## Ejemplo práctivo tfstate
+En el archivo main.tf agregamos el siguiente tag:
+
+```bash
+resource "aws_s3_bucket" "mi_bucket_local" {
+  bucket = var.nombre_bucket
+
+  tags = {
+    Entorno   = var.entorno
+    CreadoPor = "Terraform"
+    Proyecto  = "AprendizajeDevOps"  # <-- Agrega esta línea nueva
+  }
+}
+```
+Se guarda y al aplicar el plan "terraform plan" aparecera que va a hacer cambios y no crear o destruir:
+~ update in-place (actualizar en el sitio)
+
+Al aplicar "terraform apply" y revisamos el archivo tfsate se verá el nuevo tag agregado
+
+## Tres reglas de oro
+1. Nunca se edita a mano, se utilizan los otros archivos.
+2. Nunca se sube a un repo publico como GitHub, puede tener información sensible como claves.
+3. Para trabajo en equipo se utiliza un almacenamiento seguro como un Bucket S3 con bloqueo de escritura.
