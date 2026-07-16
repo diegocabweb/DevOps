@@ -293,7 +293,7 @@ Se guarda y al aplicar el plan "terraform plan" aparecera que va a hacer cambios
 
 Al aplicar "terraform apply" y revisamos el archivo tfsate se verá el nuevo tag agregado
 
-## Tres reglas de oro
+## Tres reglas de oro en tfstate
 1. Nunca se edita a mano, se utilizan los otros archivos.
 2. Nunca se sube a un repo publico como GitHub, puede tener información sensible como claves.
 3. Para trabajo en equipo se utiliza un almacenamiento seguro como un Bucket S3 con bloqueo de escritura.
