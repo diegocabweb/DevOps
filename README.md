@@ -297,3 +297,61 @@ Al aplicar "terraform apply" y revisamos el archivo tfsate se verá el nuevo tag
 1. Nunca se edita a mano, se utilizan los otros archivos.
 2. Nunca se sube a un repo publico como GitHub, puede tener información sensible como claves.
 3. Para trabajo en equipo se utiliza un almacenamiento seguro como un Bucket S3 con bloqueo de escritura.
+
+
+# 5. Aseguramiento del codigo
+Se actualiza el archivo .gitignore y se agregan las siguientes líneas para que no permita otros tipos de archivos
+
+```bash
+# Terraform: Ignorar los archivos de estado local (¡Seguridad primero!)
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+
+# Ignorar archivos temporales de crash o logs
+crash.log
+*.log
+crash.log
+
+# Variables sensibles
+*.tfvars
+*.tfvars.json
+
+# Planes de Terraform
+*.tfplan
+
+# Lock file (opcional)
+# .terraform.lock.hcl
+
+# Archivos específicos de macOS que no aportan al código
+.DS_Store
+```
+Para que esto quede aplicado, porque se encontró el archivo terraform.tfsate en GitHub se ejecuta lo siguiente:
+
+1. Elimina el archivo de estado de la caché de Git
+```bash
+git rm --cached terraform.tfstate
+```
+
+2. Si se crearon copias de seguridad de estado, elimínalas también
+```bash
+git rm --cached terraform.tfstate.backup
+```
+3. Elimina la carpeta interna de Terraform que se haya subido por error
+```bash
+git rm -r --cached .terraform/
+```
+4. Registra los cambios (esto le dirá a Git que prepare el borrado en el servidor)
+```bash
+git add .
+```
+
+5. Crea el commit explicando lo que hiciste
+```bash
+git commit -m "style: limpiar archivos temporales de terraform del repositorio"
+```
+
+6. Sube los cambios a tu rama principal en GitHub
+```bash
+git push origin main
+```
