@@ -1,7 +1,11 @@
-# Terraform
+# Terraform: Ignorar los archivos de estado local (¡Seguridad primero!)
 **/.terraform/*
 *.tfstate
 *.tfstate.*
+
+# Ignorar archivos temporales de crash o logs
+crash.log
+*.log
 crash.log
 
 # Variables sensibles
@@ -13,3 +17,6 @@ crash.log
 
 # Lock file (opcional)
 # .terraform.lock.hcl
+
+# Archivos específicos de macOS que no aportan al código
+.DS_Store
