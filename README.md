@@ -355,3 +355,26 @@ git commit -m "style: limpiar archivos temporales de terraform del repositorio"
 ```bash
 git push origin main
 ```
+
+# 6. Eliminación y persistencia
+Para eliminar la infraestructura creada en terraform
+```bash
+terraform destroy
+```
+Para trabajar en floci con persistencia, o sea que lo creado no se elimine al detener floci y docker
+```bash
+floci start --persist ./data
+```
+## Nota
+Para que no suba a GitHub el directorio data en donde persisten la info de floci, se agrega la siguiente línea en .gitignore:
+```bash
+# Ignorar la carpeta de persistencia local de Floci
+data/
+```
+y si esta ya subió es necesario ejecutar lo siguiente para eliminarlo de GitHub
+```bash
+git rm -r --cached data/
+git add .
+git commit -m "style: ignorar carpeta de persistencia de floci"
+git push origin main
+```

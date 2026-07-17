@@ -20,3 +20,6 @@ crash.log
 
 # Archivos específicos de macOS que no aportan al código
 .DS_Store
+
+# Ignorar la carpeta de persistencia local de Floci
+data/
