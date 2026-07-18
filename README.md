@@ -378,3 +378,7 @@ git add .
 git commit -m "style: ignorar carpeta de persistencia de floci"
 git push origin main
 ```
+
+## 7. Laboratorio 1. Terraform NGINX
+Se encuentra en el directorio 02-nginx-local.
+Allí se encuentra el README.md
