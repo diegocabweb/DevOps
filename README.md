@@ -381,4 +381,8 @@ git push origin main
 
 ## 7. Laboratorio 1. Terraform NGINX
 Se encuentra en el directorio 02-nginx-local.
-Allí se encuentra el README.md.
+Documentación en el archivo README.md
+
+## 8. Módulo 03: Arquitectura Modular e Infraestructura Declarativa con Terraform
+Se encuentra en el directorio 03-terraform-modular.
+Documentación en el archivo README.md
