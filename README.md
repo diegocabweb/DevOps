@@ -386,3 +386,6 @@ Documentación en el archivo README.md
 ## 8. Módulo 03: Arquitectura Modular e Infraestructura Declarativa con Terraform
 Se encuentra en el directorio 03-terraform-modular.
 Documentación en el archivo README.md
+
+## 9. Módulo 04: Terraform Remote Backend (S3 + DynamoDB)
+Se encuentra en el directorio 04-terraform-remote-backend, incluyendo el archivo README.md
