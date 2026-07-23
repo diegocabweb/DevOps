@@ -32,7 +32,8 @@ La plantilla despliega la siguiente infraestructura básica en la VPC por defect
 ├── providers.tf     # Configuración del proveedor AWS (~> 5.0) y backend remotos en S3
 ├── main.tf          # Recursos nativos (EC2, SG, Data Sources) y lógica de Workspaces
 └── outputs.tf       # Salidas de configuración (IDs de instancia, IP pública y Workspace)
-Código Clave de Configuración
+```
+## Código Clave de Configuración
 providers.tf
 Terraform
 terraform {
