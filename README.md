@@ -389,3 +389,6 @@ Documentación en el archivo README.md
 
 ## 9. Módulo 04: Terraform Remote Backend (S3 + DynamoDB)
 Se encuentra en el directorio 04-terraform-remote-backend, incluyendo el archivo README.md
+
+## 10. Módulo 05: Terraform Workspaces
+Se encuentra en el directorio 05-terraform-workspaces, incluyendo el archivo README.md
